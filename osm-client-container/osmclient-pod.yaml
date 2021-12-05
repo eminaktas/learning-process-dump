@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: osmclient
+  namespace: osm
+  labels:
+    name: osmclient
+spec:
+  containers:
+  - name: osmclient
+    image: eminaktas/osmclient
+    imagePullPolicy: Always
+    command:
+      - sh
+      - -c
+      - >
+        echo export OSM_HOSTNAME=$NBI_SERVICE_HOST:$NBI_SERVICE_PORT >> /etc/bash.bashrc;
+        sleep infinity
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "125m"

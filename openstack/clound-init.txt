@@ -1,0 +1,15 @@
+#cloud-config
+user: ubuntu
+password: pswd123
+chpasswd: { expire: False }
+ssh_pwauth: True
+write_files:
+-   content: |
+        auto ens4
+        iface ens4 inet dhcp
+    owner: root:root
+    permissions: '0644'
+    path: /etc/network/interfaces.d/01-net.cfg
+runcmd:
+ - ifup ens4
+ - version=$(lsb_release -c | cut -f 2) && if [ $version = "xenial" ]; then echo $(hostname -I | cut -d\  -f1) $(hostname) | tee -a /etc/hosts; fi
