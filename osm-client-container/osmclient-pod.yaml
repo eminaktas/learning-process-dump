@@ -18,5 +18,5 @@ spec:
         sleep infinity
     resources:
       limits:
-        memory: "64Mi"
-        cpu: "125m"
+        memory: "256Mi"
+        cpu: "500m"
